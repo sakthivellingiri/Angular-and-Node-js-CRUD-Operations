@@ -1,0 +1,89 @@
+<section class="container">
+  <header>Registration Form</header>
+
+  <form class="form" [formGroup]="reactiveForm" (ngSubmit)="OnFormSubmitted()">
+    <div class="column">
+      <div class="input-box">
+        <input type="text" placeholder="First Name"  formControlName="firstname" />
+        <small *ngIf="reactiveForm.get('firstname').invalid && reactiveForm.get('firstname').touched">
+          *First Name is required Feild
+        </small>
+      </div>
+      <div class="input-box">
+        <input type="text" placeholder="Last Name" formControlName="lastname" />
+        <small *ngIf="reactiveForm.get('lastname').invalid && reactiveForm.get('lastname').touched">
+          *Last Name is required Feild
+        </small>
+      </div>
+    </div>
+
+    <div class="input-box">
+      <input type="text" placeholder="Email" formControlName="email"/>
+      <small *ngIf="reactiveForm.get('email').invalid && reactiveForm.get('email').touched">
+        *Email is required Feild
+      </small>
+    </div>
+
+    <div class="column">
+      <div class="input-box">
+        <input type="text" placeholder="username"  formControlName="user"/>
+        <button class="btn-gen-username" type="button">
+          Create a Username
+        </button>
+      </div>
+      <div class="input-box">
+        <input type="date" placeholder="Date of Birth" formControlName="dob" [disabled]="!reactiveForm.valid" />
+      </div>
+    </div>
+    
+    <div class="gender-box">
+      <h3>Gender</h3>
+      <div class="gender-option"> 
+        <div class="gender">
+          <input type="radio" value="male" id="check-male" formControlName="gender" />
+          <label for="check-male">Male</label>
+        </div>
+        <div class="gender">
+          <input type="radio" value="female" id="check-female" formControlName="gender" />
+          <label for="check-female">Female</label> 
+        </div>
+        <div class="gender">
+          <input type="radio" value="other" id="check-other"  formControlName="gender" />
+          <label for="check-other">Prefer not to say</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-box address" formGroupName="address">
+      <label>Address</label>
+      <input type="text" placeholder="Street address" formControlName="street" />
+      <small *ngIf="reactiveForm.get('address.street').invalid && reactiveForm.get('address.street').touched">
+        *Street name is required Feild
+      </small>
+      <div class="column">
+        <div class="select-box">
+          <select name="country" formControlName="country">
+            <option hidden>Country</option>
+            <option>America</option>
+            <option>Japan</option>
+            <option>India</option>
+            <option>Nepal</option>
+          </select>
+          <small *ngIf="reactiveForm.get('address.country').invalid && reactiveForm.get('address.country').touched">
+            *country name is required Feild
+          </small>
+        </div>
+        <input type="text" placeholder="City"  formControlName="city"/>
+      </div>
+      <div class="column">
+        <input type="text" placeholder="Region" formControlName="region" />
+        <input type="number" placeholder="Postal code" formControlName="postal"/>
+        <small *ngIf="reactiveForm.get('address.postal').invalid && reactiveForm.get('address.postal').touched">
+          *Street name is required Feild
+        </small>
+      </div>
+    </div>
+    <input type="submit" value="Submit" class="submit-btn">
+  
+  </form>
+</section>
